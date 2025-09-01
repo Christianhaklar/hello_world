@@ -16,7 +16,7 @@ function scrollToFormField(fieldName) {
   }
   let binding = Utils.formatBindingFromXpath(fieldName);
   //get the first element
-  let elem = $j("[data-link = '" + binding + "'").first();
+  let elem = $j("[data-link = '" + binding + "']").first();
   //and now we scroll
   scrollToFormElement(elem);
 }
