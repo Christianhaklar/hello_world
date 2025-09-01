@@ -4,22 +4,27 @@
 // It's probably good enough to have one scrolling function, and do the conversion in the function call
 // i.e.: scrollToElement(getFormElement(fildName)) or directly like scrollToElement(elementName)
 
-function scrollToFormElement(elementName) {
+function scrollToFormElement(el) {
   // scrolling is done here
   // we measure the distance from the top of the container form_space and offset it with 40 pixels for the header
+  //fill this at some point
 }
 
-//call example
-let fieldName = "testField";
-//make sure we account for xpath and field name
-//if only the name was passed, convert it to xpath - otherwise leave it as is
-if (Utils.getNameFromPath(":", fieldName) == fieldName) {
-  fieldName = $celaneseCustomJS.getXpath(fieldName);
+function scrollToFormField(fieldName) {
+  if (Utils.getNameFromPath(":", fieldName) == fieldName) {
+    fieldName = $celaneseCustomJS.getXpath(fieldName);
+  }
+  let binding = Utils.formatBindingFromXpath(fieldName);
+  //get the first element
+  let elem = $j("[data-link = '" + binding + "'").first();
+  //and now we scroll
+  scrollToFormElement(elem);
 }
-//we can get the binding (data-link)
-scrollToFormElement(Uitls.formatBindingFromXpath(fieldName));
 
-//also, we can call this with something like this
+//using it
+scrollToFormField('fieldName');
+//or
+scrollToFormField('/my:fieldName');
+//or, we can even do things like this
+//so it goes to the first required field
 scrollToFormElement($j(".required_field").first());
-//which allows us to scroll to the first instance of an elemenet in a class
-//in practice, this can be used to scroll to the first field with a validation error - provided I check what the class name is
