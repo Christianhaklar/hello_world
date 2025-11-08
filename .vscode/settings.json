@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "RMAP"
+    ],
+    "conventionalCommits.scopes": [
+        "Scripting"
     ]
 }
